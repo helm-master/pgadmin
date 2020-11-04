@@ -11,6 +11,8 @@ This is the preferred method.
 helm plugin install https://github.com/aslafy-z/helm-git --version 0.8.1
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/futuresimple/helm-secrets
+
+helmfile https://github.com/roboll/helmfile/releases/download/v0.132.2
 ```
 
 ### Real install

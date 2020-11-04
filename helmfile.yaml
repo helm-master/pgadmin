@@ -7,7 +7,7 @@ repositories:
     url: https://charts.helm.sh/incubator
   - name: traefik
     url: https://helm.traefik.io/traefik
-  - name: bitname
+  - name: bitnami
     url: https://charts.bitnami.com/bitnami
 
 releases:
