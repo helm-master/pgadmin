@@ -1,0 +1,68 @@
+repositories:
+  - name: pgadmin
+    url: git+https://github.com/helm-master/pgadmin@pgadmin-chart?ref=main
+  - name: stable
+    url: https://charts.helm.sh/stable
+  - name: incubator
+    url: https://charts.helm.sh/incubator
+  - name: traefik
+    url: https://helm.traefik.io/traefik
+  - name: bitname
+    url: https://charts.bitnami.com/bitnami
+
+releases:
+  - name: traefik
+    namespace: traefik
+    createNamespace: true
+    chart: traefik/traefik
+    values:
+      - additionalArguments:
+        - "--api.insecure"
+        - "--accesslog"
+        - "--certificatesresolvers.le.acme.storage=/data/acme.json"
+        - "--certificatesresolvers.le.acme.email=foo@changeme.com"
+        # Please note that this is the staging Let's Encrypt server.
+        # Once you get things working, you should remove that whole line altogether.
+        # changeme
+        # - "--certificatesresolvers.le.acme.caserver=https://acme-v02.api.letsencrypt.org/directory"
+        - "--certificatesresolvers.le.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+        - "--certificatesresolvers.le.acme.dnschallenge"
+        - "--certificatesresolvers.le.acme.dnschallenge.provider=dnsimple"
+      - env:
+        # changeme
+        secrets:
+        - secrets.yaml 
+        #- name: DNSIMPLE_POLLING_INTERVAL
+        #  value:
+        #- name: DNSIMPLE_PROPAGATION_TIMEOUT
+        #  value:
+
+
+  - name: postgres
+    namespace: postgres
+    chart: bitnami/postgresql
+    values:
+      - postgresqlDatabase: changeme
+      - postgresqlPassword: changeme
+      - postgresqlUsername: changeme
+      - postgresqlPostgresPassword: changeme
+      - image:
+          tag: 13.0.0
+
+  # Published chart example
+  - name: pgadmin                            # name of this release
+    namespace: pgadmin                       # target namespace
+    createNamespace: true                  # helm 3.2+ automatically create release namespace (default true)
+    chart: pgadmin/pgadmin
+
+  - name: raw1
+    chart: incubator/raw
+    values:
+    - resources:
+      - apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: raw1
+          namespace: default
+        data:
+          foo: FOO
