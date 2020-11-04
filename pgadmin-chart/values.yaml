@@ -112,5 +112,6 @@ persistence:
   accessModes:
     - ReadWriteOnce
   size: 8Gi
-  annotations: {}
+  annotations:
+    "helm.sh/resource-policy": "keep"
 
