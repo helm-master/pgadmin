@@ -1,6 +1,6 @@
 repositories:
   - name: pgadmin
-    url: git+https://github.com/helm-master/pgadmin@pgadmin-chart?ref=main
+    url: git+https://github.com/helm-master/pgadmin-helm@pgadmin-chart?ref=main
   - name: stable
     url: https://charts.helm.sh/stable
   - name: incubator
