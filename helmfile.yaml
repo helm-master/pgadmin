@@ -11,7 +11,7 @@ repositories:
     url: https://charts.bitnami.com/bitnami
 
 helmfiles:
-  - path: traefik-helmfile.yaml
+  - path: git::https://github.com/helm-master/helmfiles.git@traefik/traefik-helmfile.yaml?ref=main
 
 releases:
   - name: postgres
